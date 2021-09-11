@@ -22,7 +22,7 @@ Stream Palette is simple web GUI for playing audio streams. The interface can be
 - Alignment of buttons (including on mobile)
 - Welcome message and explanation
 - Progressive Web App
-- Accessibility
+- Accessibility optimization
 
 ### JSON configuration file
 
