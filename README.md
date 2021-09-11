@@ -9,6 +9,7 @@ Stream Palette is simple web GUI for playing audio streams. The interface can be
   - GUI configuration for `showTextOnly`
   - GUI configuration for `showIconsOnly`
 - Alignment of buttons (including on mobile)
+- Welcome message and explanation
 
 ### JSON configuration file
 
