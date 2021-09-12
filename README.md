@@ -43,10 +43,10 @@ The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstra
 - `showChannel`: `false` to hide the button from the palette.
 - `showIconOnly`: `true` to remove text from button when an icon is available.
 
-For `type: stream`:
+For `type` = `stream`:
 - `url`*: url directing to the stream.
 
-For `type: group`:
+For `type` = `group`:
 - `streams`*: a list containing stream channel names and url's.
   - `{key}`: name for the button.
   - `{value}`: url directing to the stream.
