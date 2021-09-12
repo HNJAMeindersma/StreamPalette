@@ -28,6 +28,7 @@ The application runs fully client side (on HTML5, CSS5, JavaScript & Bootstrap 5
 - Progressive Web App
 - Accessibility optimization
   - Upload function for non drag & drop users
+- Cross site security
 
 ### JSON configuration file
 
