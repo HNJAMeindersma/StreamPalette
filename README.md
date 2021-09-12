@@ -22,6 +22,7 @@ The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstra
   - Quick access to premade JSON configuration files
   - Control audio output sink
 - Progressive Web App
+  - PWA manifest
   - Save and remove configuration file in local cache
 - Accessibility optimization
   - Alignment of buttons (responsiveness on mobile)
