@@ -260,9 +260,9 @@ document.getElementById('palette-search').addEventListener('input', function() {
 });
 
 // Capture CTRL+F for build in live search
-window.addEventListener("keydown", function(e) {
+window.addEventListener('keydown', function(e) {
   if(e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
     e.preventDefault();
-    document.getElementById("palette-search").focus();
+    document.getElementById('palette-search').focus();
   }
 });
