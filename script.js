@@ -363,15 +363,15 @@ document.getElementById('player-settings').onclick = function() {
   <h6>Global appearance</h6>
   <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" id="formShowMonoButtons"${showMonoButtons}>
-    <label class="form-check-label" for="formShowMonoButtons">Show dark buttons</label>
+    <label class="form-check-label" for="formShowMonoButtons">Show monotone buttons</label>
   </div>
   <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" value="" id="formShowTextOnly"${showTextOnly}>
-    <label class="form-check-label" for="formShowTextOnly">Show text only</label>
+    <label class="form-check-label" for="formShowTextOnly">Only show text on buttons</label>
   </div>
   <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" value="" id="formShowIconsOnly"${showIconsOnly}>
-    <label class="form-check-label" for="formShowIconsOnly">Show icons only</label>
+    <label class="form-check-label" for="formShowIconsOnly">Only show icons on buttons</label>
   </div>
   <hr class="my-3 bg-dark bg-opacity-25">
   <h6>Predefined playlists</h6>
