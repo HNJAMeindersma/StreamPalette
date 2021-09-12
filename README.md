@@ -41,8 +41,8 @@ For `type: stream`:
 
 For `type: group`:
 - `streams`*: a list containing stream channel names and url's.
-  - `key`: name for the button.
-  - `value`: url directing to the stream.
+  - `{key}`: name for the button.
+  - `{value}`: url directing to the stream.
 
 _* = required configuration element_
 
