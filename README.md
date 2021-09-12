@@ -16,16 +16,16 @@ The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstra
 [Source: 'HTML5 audio - Supported audio coding formats' @ Wikipedia](https://en.wikipedia.org/wiki/HTML5_audio#Supported_audio_coding_formats "Source")
 
 ### To-Do
+- Welcome message
 - Volume control
-- Configuration panel
+- Settings
   - Quick access to premade JSON configuration files
   - Control audio output sink
-- Alignment of buttons (responsiveness on mobile)
-- Welcome message and explanation
 - Progressive Web App
-  - Save and remove configuration file in local cache ('Load your own playlist')
+  - Save and remove configuration file in local cache
 - Accessibility optimization
-  - Upload function for non drag & drop users ('Load your own playlist')
+  - Alignment of buttons (responsiveness on mobile)
+  - Upload function for non drag & drop users
 - Cross site security
 
 ### JSON configuration file
