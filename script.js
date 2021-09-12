@@ -338,23 +338,29 @@ document.getElementById('player-settings').onclick = function() {
   // Build modal
   document.getElementById('staticBackdropLabel').innerHTML = 'Settings';
   document.getElementById('staticBackdropBody').innerHTML = `
-  <label for="formButtonSize" class="form-label">Button size</label>
-  <div class="mb-3 input-group">
-    <input type="number" class="form-control" id="formButtonSize" placeholder="Button size in 'rem'" value="${buttonSize}">
-    <label for="formButtonSize" class="input-group-text">rem</label>
+  <div class="row">
+    <div class="col-sm-5">
+      <label for="formButtonSize" class="form-label h6">Button size</label>
+      <div class="mb-3 input-group">
+        <input type="number" class="form-control" id="formButtonSize" placeholder="Button size in 'rem'" value="${buttonSize}">
+        <label for="formButtonSize" class="input-group-text">rem</label>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <label for="formButtonWidthMin" class="form-label h6">Button width</label>
+      <div class="mb-3 input-group">
+        <label for="formButtonWidthMin" class="input-group-text">Minimum</label>
+        <input type="number" class="form-control" id="formButtonWidthMin" placeholder="Minimum button width in 'rem'" value="${buttonWidthMin}">
+        <label for="formButtonWidthMin" class="input-group-text">rem</label>
+      </div>
+      <div class="mb-3 input-group">
+        <label for="formButtonWidthMax" class="input-group-text">Maximum</label>
+        <input type="number" class="form-control" id="formButtonWidthMax" placeholder="Maximum button width in 'rem'" value="${buttonWidthMax}">
+        <label for="formButtonWidthMax" class="input-group-text">rem</label>
+      </div>
+    </div>
   </div>
-  <label for="formButtonWidthMin" class="form-label">Button width</label>
-  <div class="mb-3 input-group">
-    <label for="formButtonWidthMin" class="input-group-text">Minimum</label>
-    <input type="number" class="form-control" id="formButtonWidthMin" placeholder="Minimum button width in 'rem'" value="${buttonWidthMin}">
-    <label for="formButtonWidthMin" class="input-group-text">rem</label>
-  </div>
-  <div class="mb-3 input-group">
-    <label for="formButtonWidthMax" class="input-group-text">Maximum</label>
-    <input type="number" class="form-control" id="formButtonWidthMax" placeholder="Maximum button width in 'rem'" value="${buttonWidthMax}">
-    <label for="formButtonWidthMax" class="input-group-text">rem</label>
-  </div>
-  <h6>Overrule individual appearance</h6>
+  <h6>Global appearance</h6>
   <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" id="formShowDarkButtons"${showDarkButtons}>
     <label class="form-check-label" for="formShowDarkButtons">Show dark buttons</label>
