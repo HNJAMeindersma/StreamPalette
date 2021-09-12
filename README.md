@@ -13,7 +13,7 @@ The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstra
 | Opera             | v11+  | YES   | YES   | v10.50+    | v14+      | YES   |
 | Safari            | v3.1+ | v3.1+ | YES   | no         | no        | v11+  |
 
-[Souce: 'HTML5 audio' @ Wikipedia](https://en.wikipedia.org/wiki/HTML5_audio#Supported_audio_coding_formats "Source")
+[Source: 'HTML5 audio - Supported audio coding formats' @ Wikipedia](https://en.wikipedia.org/wiki/HTML5_audio#Supported_audio_coding_formats "Source")
 
 ### To-Do
 - Volume control
