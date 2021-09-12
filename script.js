@@ -211,10 +211,12 @@ dropJSON(document.body);
 // Pause listeners
 document.getElementById('player').onplaying = function() {
   document.getElementById('player-pause').innerHTML = '<span class="oi oi-media-pause"></span>';
+  document.getElementById('player-pause').title = 'Pause';
   document.getElementById('player-title').classList.remove('text-muted');
 };
 document.getElementById('player').onpause = function() {
   document.getElementById('player-pause').innerHTML = '<span class="oi oi-media-play"></span>';
+  document.getElementById('player-pause').title = 'Play';
   document.getElementById('player-title').classList.add('text-muted');
 };
 
@@ -238,6 +240,7 @@ document.getElementById('player-stop').onclick = function() {
   document.getElementById('player-title').innerHTML = document.head.querySelector("[name~=application-name][content]").content;
   document.getElementById('player-title').classList.add('text-muted');
   document.getElementById('player-pause').innerHTML = '<span class="oi oi-media-play"></span>';
+  document.getElementById('player-pause').title = 'Play';
   document.getElementById('player-pause').disabled = true;
   document.getElementById('player-stop').disabled = true;
 };
@@ -323,6 +326,12 @@ document.getElementById('player-settings').onclick = function() {
     <input class="form-check-input" type="checkbox" value="" id="showIconsOnly"${showIconsOnly}>
     <label class="form-check-label" for="showIconsOnly">Show icons only</label>
   </div>
+  <hr class="my-3 bg-dark bg-opacity-25">
+  <h6>Load your own playlist</h6>
+  <hr class="my-3 bg-dark bg-opacity-25">
+  <h6>Predefined playlists</h6>
+  <hr class="my-3 bg-dark bg-opacity-25">
+  <h6>Change audio output</h6>
   `;
   document.getElementById('staticBackdropFooter').classList.add('d-none');
 
