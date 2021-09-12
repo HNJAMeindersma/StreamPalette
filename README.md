@@ -3,7 +3,7 @@ Stream Palette is simple web GUI for playing audio streams. The interface can be
 
 Buttons on the palette can either represent a single direct `stream` or a `group` of themed or sub-channels. Palette buttons can have an icon, text or both. And the button's background can be given a custom color and/or image.
 
-The application runs fully client side (on HTML5, CSS5, JavaScript & Bootstrap 5.1) and it uses HTML5's Audio element to play the streams, which limits the format and codec of the streams to:
+The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstrap 5.1.1 bundle with Popper and Open Iconic 1.1.1. The native HTML5 Audio element is used to play the streams. This limits the format of the streams to the following table:
 | Browser           | PCM   | MP3   | AAC   | Vorbis Ogg | Opus Ogg  | FLAC  |
 |:----------------- |:----- |:----- |:----- |:---------- |:--------- |:----- |
 | Chrome            | YES   | YES   | YES   | v9+        | v31+      | v56+  |
