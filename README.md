@@ -40,7 +40,7 @@ The application runs fully client side (on HTML5, CSS5, JavaScript & Bootstrap 5
 - `icon`: url directing to an icon for the button.
 - `color`: background color for the button.
 - `background`: url directing to a background image for the button.
-- `showChannel`: `true` or `false` to display the button on the palette.
+- `showChannel`: `false` to hide the button from the palette.
 - `showIconOnly`: `true` to remove text from button when an icon is available.
 
 For `type: stream`:
