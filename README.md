@@ -19,16 +19,13 @@ The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstra
 - Volume control
 - Configuration panel
   - Quick access to premade JSON configuration files
-  - GUI configuration for `showDarkButtons`
-  - GUI configuration for `showTextOnly`
-  - GUI configuration for `showIconsOnly`
-  - Save and remove configuration file in local cache
   - Control audio output sink
-- Alignment of buttons (including on mobile)
+- Alignment of buttons (responsiveness on mobile)
 - Welcome message and explanation
 - Progressive Web App
+  - Save and remove configuration file in local cache ('Load your own playlist')
 - Accessibility optimization
-  - Upload function for non drag & drop users
+  - Upload function for non drag & drop users ('Load your own playlist')
 - Cross site security
 
 ### JSON configuration file

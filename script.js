@@ -2,34 +2,11 @@
 document.title = document.head.querySelector("[name~=application-name][content]").content;
 document.getElementById('player-title').innerHTML = document.head.querySelector("[name~=application-name][content]").content;
 document.getElementById('palette').setAttribute('style', '--button-size: 1.5rem; --button-width-min: 8rem; --button-width-max: 24rem;');
+document.getElementById('player-settings').disabled = false;
 
-// Drag & drop JSON on element
-function dropJSON(target, callback) {
+var dataCache;
 
-  // Disable default drag listeners
-  target.addEventListener('dragenter', function(event){ event.preventDefault(); });
-  target.addEventListener('dragover', function(event){ event.preventDefault(); });
-
-  // Listen for drop
-  target.addEventListener('drop', function(event) {
-
-    // Read and try to parse JSON file
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      try {
-        var data = JSON.parse(this.result);
-        callback(data);
-      } catch(error) {
-        alert('Failed to read JSON file: ' + error.name);
-      }
-    };
-    reader.readAsText(event.dataTransfer.files[0]);
-
-    // Disable default drop listener
-    event.preventDefault();
-
-  });
-}
+// FUNCTIONS START -------------------------------------------------------------
 
 // Sort array by key attribute
 function sortKeyAttribute(prop) {
@@ -43,8 +20,11 @@ function sortKeyAttribute(prop) {
   };
 }
 
-// Set drop callback to body
-dropJSON(document.body, function(data) {
+// Create palette
+function renderPalette(data) {
+
+  // Update data cache
+  dataCache = data;
 
   // Find palette element and clear it
   var palette = document.getElementById('palette');
@@ -149,9 +129,6 @@ dropJSON(document.body, function(data) {
     } else if(item.type == 'group') {
       lastElement.addEventListener('click', function() {
 
-        // Show modal
-        bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop')).show();
-
         // Build modal
         document.getElementById('staticBackdropLabel').innerHTML = this.getAttribute('data-name');
         document.getElementById('staticBackdropBody').innerHTML = '';
@@ -188,12 +165,48 @@ dropJSON(document.body, function(data) {
           });
         }
 
+        // Show modal
+        bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop')).show();
+
       });
     }
 
   });
 
-});
+}
+
+// Drag & drop JSON on element
+function dropJSON(target) {
+
+  // Disable default drag listeners
+  target.addEventListener('dragenter', function(event){ event.preventDefault(); });
+  target.addEventListener('dragover', function(event){ event.preventDefault(); });
+
+  // Listen for drop
+  target.addEventListener('drop', function(event) {
+
+    // Read and try to parse JSON file
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      try {
+        var data = JSON.parse(this.result);
+        renderPalette(data);
+      } catch(error) {
+        alert('Failed to read JSON file: ' + error.name);
+      }
+    };
+    reader.readAsText(event.dataTransfer.files[0]);
+
+    // Disable default drop listener
+    event.preventDefault();
+
+  });
+}
+
+// FUNCTIONS END ---------------------------------------------------------------
+
+// Set drop callback to body
+dropJSON(document.body);
 
 // Pause listeners
 document.getElementById('player').onplaying = function() {
@@ -266,3 +279,68 @@ window.addEventListener('keydown', function(e) {
     document.getElementById('palette-search').focus();
   }
 });
+
+// Build settings panel
+document.getElementById('player-settings').onclick = function() {
+
+  // Check setting states
+  var showDarkButtons, showTextOnly, showIconsOnly;
+  try {
+    if(dataCache.settings.showDarkButtons) {
+      showDarkButtons = ' checked';
+    }
+  } catch(e) {
+    showDarkButtons = ' disabled';
+  }
+  try {
+    if(dataCache.settings.showTextOnly) {
+      showTextOnly = ' checked';
+    }
+  } catch(e) {
+    showTextOnly = ' disabled';
+  }
+  try {
+    if(dataCache.settings.showIconsOnly) {
+      showIconsOnly = ' checked';
+    }
+  } catch(e) {
+    showIconsOnly = ' disabled';
+  }
+
+  // Build modal
+  document.getElementById('staticBackdropLabel').innerHTML = 'Settings panel';
+  document.getElementById('staticBackdropBody').innerHTML = `
+  <h6>Overrule appearance</h6>
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" id="showDarkButtons"${showDarkButtons}>
+    <label class="form-check-label" for="showDarkButtons">Show dark buttons</label>
+  </div>
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" value="" id="showTextOnly"${showTextOnly}>
+    <label class="form-check-label" for="showTextOnly">Show text only</label>
+  </div>
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" value="" id="showIconsOnly"${showIconsOnly}>
+    <label class="form-check-label" for="showIconsOnly">Show icons only</label>
+  </div>
+  `;
+  document.getElementById('staticBackdropFooter').classList.add('d-none');
+
+  // Listen for changes
+  document.getElementById('showDarkButtons').addEventListener('input', function() {
+    dataCache.settings.showDarkButtons = document.getElementById('showDarkButtons').checked;
+    renderPalette(dataCache);
+  });
+  document.getElementById('showTextOnly').addEventListener('input', function() {
+    dataCache.settings.showTextOnly = document.getElementById('showTextOnly').checked;
+    renderPalette(dataCache);
+  });
+  document.getElementById('showIconsOnly').addEventListener('input', function() {
+    dataCache.settings.showIconsOnly = document.getElementById('showIconsOnly').checked;
+    renderPalette(dataCache);
+  });
+
+  // Show modal
+  bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop')).show();
+
+};
