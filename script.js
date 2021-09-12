@@ -326,12 +326,6 @@ document.getElementById('player-settings').onclick = function() {
     <input class="form-check-input" type="checkbox" value="" id="showIconsOnly"${showIconsOnly}>
     <label class="form-check-label" for="showIconsOnly">Show icons only</label>
   </div>
-  <hr class="my-3 bg-dark bg-opacity-25">
-  <h6>Load your own playlist</h6>
-  <hr class="my-3 bg-dark bg-opacity-25">
-  <h6>Predefined playlists</h6>
-  <hr class="my-3 bg-dark bg-opacity-25">
-  <h6>Change audio output</h6>
   `;
   document.getElementById('staticBackdropFooter').classList.add('d-none');
 
