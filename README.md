@@ -1,4 +1,6 @@
 # Stream Palette
+[![CodeQL](https://github.com/HNJAMeindersma/StreamPalette/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/HNJAMeindersma/StreamPalette/actions/workflows/codeql-analysis.yml)
+
 Stream Palette is simple web GUI for playing audio streams. The interface can be configured by dragging & dropping a JSON configuration file on the palette. These files contain all the stream channels and are specifically made for your needs. There are premade files available in the repository.
 
 Buttons on the palette can either represent a single direct `stream` or a `group` of themed or sub-channels. Palette buttons can have an icon, text or both. And the button's background can be given a custom color and/or image.
@@ -21,12 +23,12 @@ The application runs fully client side, on HTML5, CSS3, JavaScript, the Bootstra
 - Settings
   - Quick access to premade JSON configuration files
   - Control audio output sink
-- Progressive Web App
-  - PWA manifest
-  - Save and remove configuration file in local cache
 - Accessibility optimization
   - Alignment of buttons (responsiveness on mobile)
   - Upload function for non drag & drop users
+- Progressive Web App
+  - PWA manifest
+  - Save and remove configuration file in local cache
 - Cross site security
 
 ### JSON configuration file
