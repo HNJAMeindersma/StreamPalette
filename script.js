@@ -1,7 +1,7 @@
 // Startup tasks
 document.title = document.head.querySelector("[name~=application-name][content]").content;
 document.getElementById('player-title').innerHTML = document.head.querySelector("[name~=application-name][content]").content;
-document.getElementById('palette').setAttribute('style', '--button-size: 1.5rem; --button-width-min: 8rem; --button-width-max: 24rem;');
+//document.getElementById('palette').setAttribute('style', '--button-size: 1.5rem; --button-width-min: 0rem; --button-width-max: 24rem;');
 document.getElementById('player-settings').disabled = false;
 
 var dataCache;
@@ -25,6 +25,9 @@ function renderPalette(data) {
 
   // Update data cache
   dataCache = data;
+
+  // Deploy general settings
+  document.getElementById('palette').setAttribute('style', '--button-size: ' + data.settings.buttonSize + 'rem; --button-width-min: ' + data.settings.buttonWidthMin + 'rem; --button-width-max: ' + data.settings.buttonWidthMax + 'rem;');
 
   // Find palette element and clear it
   var palette = document.getElementById('palette');
@@ -120,7 +123,7 @@ function renderPalette(data) {
         document.getElementById('player').src = this.getAttribute('data-url');
         document.getElementById('player').play();
         document.title = this.getAttribute('data-name') + ' - ' + document.head.querySelector("[name~=application-name][content]").content;
-        document.getElementById('player-title').innerHTML = escape(this.getAttribute('data-name'));
+        document.getElementById('player-title').innerHTML = this.getAttribute('data-name');
         document.getElementById('player-title').classList.add('text-muted');
         document.getElementById('player-pause').disabled = false;
         document.getElementById('player-stop').disabled = false;
@@ -130,7 +133,7 @@ function renderPalette(data) {
       lastElement.addEventListener('click', function() {
 
         // Build modal
-        document.getElementById('staticBackdropLabel').innerHTML = escape(this.getAttribute('data-name'));
+        document.getElementById('staticBackdropLabel').innerHTML = this.getAttribute('data-name');
         document.getElementById('staticBackdropBody').innerHTML = '';
         document.getElementById('staticBackdropFooter').classList.add('d-none');
 
@@ -156,7 +159,7 @@ function renderPalette(data) {
             document.getElementById('player').src = this.getAttribute('data-url');
             document.getElementById('player').play();
             document.title = this.getAttribute('data-name') + ' - ' + document.head.querySelector("[name~=application-name][content]").content;
-            document.getElementById('player-title').innerHTML = escape(this.getAttribute('data-name'));
+            document.getElementById('player-title').innerHTML = this.getAttribute('data-name');
             document.getElementById('player-title').classList.add('text-muted');
             document.getElementById('player-pause').disabled = false;
             document.getElementById('player-stop').disabled = false;
@@ -191,6 +194,7 @@ function dropJSON(target) {
       try {
         var data = JSON.parse(this.result);
         renderPalette(data);
+        bootstrap.Modal.getOrCreateInstance(document.getElementById('staticBackdrop')).hide();
       } catch(error) {
         alert('Failed to read JSON file: ' + error.name);
       }
@@ -287,7 +291,7 @@ window.addEventListener('keydown', function(e) {
 document.getElementById('player-settings').onclick = function() {
 
   // Check setting states
-  var showDarkButtons, showTextOnly, showIconsOnly;
+  var showDarkButtons, showTextOnly, showIconsOnly, buttonSize, buttonWidthMin, buttonWidthMax;
   try {
     if(dataCache.settings.showDarkButtons) {
       showDarkButtons = ' checked';
@@ -309,43 +313,124 @@ document.getElementById('player-settings').onclick = function() {
   } catch(e) {
     showIconsOnly = ' disabled';
   }
+  try {
+    if(dataCache.settings.buttonSize) {
+      buttonSize = dataCache.settings.buttonSize;
+    }
+  } catch(e) {
+    buttonSize = 1.5;
+  }
+  try {
+    if(dataCache.settings.buttonWidthMin) {
+      buttonWidthMin = dataCache.settings.buttonWidthMin;
+    }
+  } catch(e) {
+    buttonWidthMin = 0;
+  }
+  try {
+    if(dataCache.settings.buttonWidthMax) {
+      buttonWidthMax = dataCache.settings.buttonWidthMax;
+    }
+  } catch(e) {
+    buttonWidthMax = 24;
+  }
 
   // Build modal
   document.getElementById('staticBackdropLabel').innerHTML = 'Settings';
   document.getElementById('staticBackdropBody').innerHTML = `
-  <h6>Overrule appearance</h6>
+  <label for="formButtonSize" class="form-label">Button size</label>
+  <div class="mb-3 input-group">
+    <input type="number" class="form-control" id="formButtonSize" placeholder="Button size in 'rem'" value="${buttonSize}">
+    <label for="formButtonSize" class="input-group-text">rem</label>
+  </div>
+  <label for="formButtonWidthMin" class="form-label">Button width</label>
+  <div class="mb-3 input-group">
+    <label for="formButtonWidthMin" class="input-group-text">Minimum</label>
+    <input type="number" class="form-control" id="formButtonWidthMin" placeholder="Minimum button width in 'rem'" value="${buttonWidthMin}">
+    <label for="formButtonWidthMin" class="input-group-text">rem</label>
+  </div>
+  <div class="mb-3 input-group">
+    <label for="formButtonWidthMax" class="input-group-text">Maximum</label>
+    <input type="number" class="form-control" id="formButtonWidthMax" placeholder="Maximum button width in 'rem'" value="${buttonWidthMax}">
+    <label for="formButtonWidthMax" class="input-group-text">rem</label>
+  </div>
+  <h6>Overrule individual appearance</h6>
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="showDarkButtons"${showDarkButtons}>
-    <label class="form-check-label" for="showDarkButtons">Show dark buttons</label>
+    <input class="form-check-input" type="checkbox" id="formShowDarkButtons"${showDarkButtons}>
+    <label class="form-check-label" for="formShowDarkButtons">Show dark buttons</label>
   </div>
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" value="" id="showTextOnly"${showTextOnly}>
-    <label class="form-check-label" for="showTextOnly">Show text only</label>
+    <input class="form-check-input" type="checkbox" value="" id="formShowTextOnly"${showTextOnly}>
+    <label class="form-check-label" for="formShowTextOnly">Show text only</label>
   </div>
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" value="" id="showIconsOnly"${showIconsOnly}>
-    <label class="form-check-label" for="showIconsOnly">Show icons only</label>
+    <input class="form-check-input" type="checkbox" value="" id="formShowIconsOnly"${showIconsOnly}>
+    <label class="form-check-label" for="formShowIconsOnly">Show icons only</label>
+  </div>
+  <hr class="my-3 bg-dark bg-opacity-25">
+  <h6>Predefined playlists</h6>
+  <div class="mb-3 input-group">
+    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" disabled>
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    <button class="btn btn-outline-secondary" type="button" disabled>Load</button>
   </div>
   <hr class="my-3 bg-dark bg-opacity-25">
   <h6>Load your own playlist</h6>
-  <hr class="my-3 bg-dark bg-opacity-25">
-  <h6>Predefined playlists</h6>
+  <div class="mb-3 input-group">
+    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Local" disabled>
+    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" disabled>Load</button>
+  </div>
+  <div class="mb-3 input-group">
+    <label class="input-group-text" for="inputGroupSelect02">Cached</label>
+    <select class="form-select" id="inputGroupSelect02" aria-label="Example select with button addon" disabled>
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    <button class="btn btn-outline-danger" type="button" disabled>Delete</button>
+    <button class="btn btn-outline-secondary" type="button" disabled>Load</button>
+  </div>
   <hr class="my-3 bg-dark bg-opacity-25">
   <h6>Change audio output</h6>
+  <div class="mb-3 input-group">
+    <select class="form-select" id="inputGroupSelect06" aria-label="Example select with button addon" disabled>
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
   `;
   document.getElementById('staticBackdropFooter').classList.add('d-none');
 
   // Listen for changes
-  document.getElementById('showDarkButtons').addEventListener('input', function() {
-    dataCache.settings.showDarkButtons = document.getElementById('showDarkButtons').checked;
+  document.getElementById('formButtonSize').addEventListener('input', function() {
+    dataCache.settings.buttonSize = document.getElementById('formButtonSize').value;
     renderPalette(dataCache);
   });
-  document.getElementById('showTextOnly').addEventListener('input', function() {
-    dataCache.settings.showTextOnly = document.getElementById('showTextOnly').checked;
+  document.getElementById('formButtonWidthMin').addEventListener('input', function() {
+    dataCache.settings.buttonWidthMin = document.getElementById('formButtonWidthMin').value;
     renderPalette(dataCache);
   });
-  document.getElementById('showIconsOnly').addEventListener('input', function() {
-    dataCache.settings.showIconsOnly = document.getElementById('showIconsOnly').checked;
+  document.getElementById('formButtonWidthMax').addEventListener('input', function() {
+    dataCache.settings.buttonWidthMax = document.getElementById('formButtonWidthMax').value;
+    renderPalette(dataCache);
+  });
+  document.getElementById('formShowDarkButtons').addEventListener('input', function() {
+    dataCache.settings.showDarkButtons = document.getElementById('formShowDarkButtons').checked;
+    renderPalette(dataCache);
+  });
+  document.getElementById('formShowTextOnly').addEventListener('input', function() {
+    dataCache.settings.showTextOnly = document.getElementById('formShowTextOnly').checked;
+    renderPalette(dataCache);
+  });
+  document.getElementById('formShowIconsOnly').addEventListener('input', function() {
+    dataCache.settings.showIconsOnly = document.getElementById('formShowIconsOnly').checked;
     renderPalette(dataCache);
   });
 

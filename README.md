@@ -34,6 +34,9 @@ The application runs fully client side, with HTML5, CSS3, JavaScript, the Bootst
 
 ### JSON configuration file
 
+##### Name
+- `name`*: name for the palette.
+
 ##### Playlist
 - `type`*: `stream` for buttons with a single stream channel, `group` for multiple stream channels.
 - `order`*: integer for button order inside the palette.
@@ -52,16 +55,20 @@ For `type` = `group`:
   - `{key}`: name for the button.
   - `{value}`: url directing to the stream.
 
-_* = required configuration element_
-
 ##### Settings
+- `buttonSize`* decimal rem value for the face and content size of the palette buttons.
+- `buttonWidthMin`* decimal rem value for the minimal width of the palette buttons.
+- `buttonWidthMax`* decimal rem value for the maximal width of the palette buttons.
 - `showDarkButtons` when `true`: removes all icons and background (image and color) from the buttons.
 - `showTextOnly` when `true`: removes all icons and background image, but leaves custom background color.
 - `showIconsOnly` when `true`: removes all text from buttons when an icon is available.
 
+_* = required configuration element_
+
 ### JSON file example
 ```
 {
+  "name": "My Palette",
   "playlist": [
     {
       "type": "stream",
@@ -90,6 +97,9 @@ _* = required configuration element_
     }
   ],
   "settings": {
+    "buttonSize": 1.5,
+    "buttonWidthMin": 16,
+    "buttonWidthMax": 16,
     "showDarkButtons": false,
     "showTextOnly": false,
     "showIconsOnly": false,
