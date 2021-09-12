@@ -78,8 +78,8 @@ _* = required configuration element_
       "order": 2,
       "name": "NPO Radio 2",
       "streams": {
-        "NPO Radio 2":              "https://icecast.omroep.nl/radio2-bb-mp3",
-        "NPO Radio 2 Soul & Jazz":  "https://icecast.omroep.nl/radio6-bb-mp3"
+        "NPO Radio 2": "https://icecast.omroep.nl/radio2-bb-mp3",
+        "NPO Radio 2 Soul & Jazz": "https://icecast.omroep.nl/radio6-bb-mp3"
       },
       "icon": "https://upload.wikimedia.org/wikipedia/commons/f/f4/NPO_Radio_2_logo.svg",
       "color": "#22282e",

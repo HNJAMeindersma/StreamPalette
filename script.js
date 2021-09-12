@@ -139,7 +139,7 @@ dropJSON(document.body, function(data) {
 
         document.getElementById('player').src = this.getAttribute('data-url');
         document.getElementById('player').play();
-        document.title = document.head.querySelector("[name~=application-name][content]").content + ': ' + this.getAttribute('data-name');
+        document.title = this.getAttribute('data-name') + ' | ' + document.head.querySelector("[name~=application-name][content]").content;
         document.getElementById('player-title').innerHTML = this.getAttribute('data-name');
         document.getElementById('player-title').classList.add('text-muted');
         document.getElementById('player-pause').disabled = false;
