@@ -1,6 +1,6 @@
 # Stream Palette
-[![CodeQL](https://github.com/HNJAMeindersma/StreamPalette/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/HNJAMeindersma/StreamPalette/actions/workflows/codeql-analysis.yml)
-[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE "Go to license section")
+[![CodeQL](https://github.com/HNJAMeindersma/StreamPalette/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/HNJAMeindersma/StreamPalette/actions/workflows/codeql-analysis.yml "CodeQL")
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE "License")
 
 Stream Palette is simple web GUI for playing audio streams. The interface can be configured by dragging & dropping a JSON configuration file on the palette. These files contain all the stream channels and are specifically made for your needs. There are premade files available in the repository.
 
