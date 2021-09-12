@@ -120,7 +120,7 @@ function renderPalette(data) {
         document.getElementById('player').src = this.getAttribute('data-url');
         document.getElementById('player').play();
         document.title = this.getAttribute('data-name') + ' - ' + document.head.querySelector("[name~=application-name][content]").content;
-        document.getElementById('player-title').innerHTML = this.getAttribute('data-name');
+        document.getElementById('player-title').innerHTML = escape(this.getAttribute('data-name'));
         document.getElementById('player-title').classList.add('text-muted');
         document.getElementById('player-pause').disabled = false;
         document.getElementById('player-stop').disabled = false;
@@ -130,7 +130,7 @@ function renderPalette(data) {
       lastElement.addEventListener('click', function() {
 
         // Build modal
-        document.getElementById('staticBackdropLabel').innerHTML = this.getAttribute('data-name');
+        document.getElementById('staticBackdropLabel').innerHTML = escape(this.getAttribute('data-name'));
         document.getElementById('staticBackdropBody').innerHTML = '';
         document.getElementById('staticBackdropFooter').classList.add('d-none');
 
@@ -156,7 +156,7 @@ function renderPalette(data) {
             document.getElementById('player').src = this.getAttribute('data-url');
             document.getElementById('player').play();
             document.title = this.getAttribute('data-name') + ' - ' + document.head.querySelector("[name~=application-name][content]").content;
-            document.getElementById('player-title').innerHTML = this.getAttribute('data-name');
+            document.getElementById('player-title').innerHTML = escape(this.getAttribute('data-name'));
             document.getElementById('player-title').classList.add('text-muted');
             document.getElementById('player-pause').disabled = false;
             document.getElementById('player-stop').disabled = false;
