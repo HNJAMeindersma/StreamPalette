@@ -22,6 +22,7 @@ The application runs fully client side (on HTML5, CSS5, JavaScript & Bootstrap 5
   - GUI configuration for `showDarkButtons`
   - GUI configuration for `showTextOnly`
   - GUI configuration for `showIconsOnly`
+  - Save and remove configuration file in local cache
   - Control audio output sink
 - Alignment of buttons (including on mobile)
 - Welcome message and explanation
