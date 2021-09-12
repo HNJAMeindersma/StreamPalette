@@ -52,7 +52,7 @@ function renderPalette(data) {
     element.setAttribute('title', item.name);
 
     // Set button face
-    if(data.settings.showDarkButtons === true) {
+    if(data.settings.showMonoButtons === true) {
       element.innerHTML = item.name;
     } else if(data.settings.showTextOnly === true) {
       element.innerHTML = item.name;
@@ -70,7 +70,7 @@ function renderPalette(data) {
     }
 
     // Set button background
-    if(data.settings.showDarkButtons === true) {
+    if(data.settings.showMonoButtons === true) {
       element.setAttribute('style', '--bg-color: #000;');
     } else if(data.settings.showTextOnly === true) {
       element.setAttribute('style', '--bg-color: ' + item.color + ';');
@@ -291,13 +291,13 @@ window.addEventListener('keydown', function(e) {
 document.getElementById('player-settings').onclick = function() {
 
   // Check setting states
-  var showDarkButtons, showTextOnly, showIconsOnly, buttonSize, buttonWidthMin, buttonWidthMax;
+  var showMonoButtons, showTextOnly, showIconsOnly, buttonSize, buttonWidthMin, buttonWidthMax;
   try {
-    if(dataCache.settings.showDarkButtons) {
-      showDarkButtons = ' checked';
+    if(dataCache.settings.showMonoButtons) {
+      showMonoButtons = ' checked';
     }
   } catch(e) {
-    showDarkButtons = ' disabled';
+    showMonoButtons = ' disabled';
   }
   try {
     if(dataCache.settings.showTextOnly) {
@@ -362,8 +362,8 @@ document.getElementById('player-settings').onclick = function() {
   </div>
   <h6>Global appearance</h6>
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="formShowDarkButtons"${showDarkButtons}>
-    <label class="form-check-label" for="formShowDarkButtons">Show dark buttons</label>
+    <input class="form-check-input" type="checkbox" id="formShowMonoButtons"${showMonoButtons}>
+    <label class="form-check-label" for="formShowMonoButtons">Show dark buttons</label>
   </div>
   <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" value="" id="formShowTextOnly"${showTextOnly}>
@@ -427,8 +427,8 @@ document.getElementById('player-settings').onclick = function() {
     dataCache.settings.buttonWidthMax = document.getElementById('formButtonWidthMax').value;
     renderPalette(dataCache);
   });
-  document.getElementById('formShowDarkButtons').addEventListener('input', function() {
-    dataCache.settings.showDarkButtons = document.getElementById('formShowDarkButtons').checked;
+  document.getElementById('formShowMonoButtons').addEventListener('input', function() {
+    dataCache.settings.showMonoButtons = document.getElementById('formShowMonoButtons').checked;
     renderPalette(dataCache);
   });
   document.getElementById('formShowTextOnly').addEventListener('input', function() {
